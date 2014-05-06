@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tämä päivä</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="date">dd.mm.yyyy</string>
+    <string name="day_of_week">Perjantai</string>
+    <string name="name_day_calendar_text">Ei tapahtumaa</string>
+    <string name="holiday_calendar_text">Ei tapahtumaa</string>
+    <string name="event_summary_text">%1$s, %2$s</string>
+    <string name="event_summary_to_next_event_text_fine">seuraavaan %1$s</string>
+    <string name="event_summary_to_next_event_text_coarse">seuraava %1$s</string>
+    <string name="event_summary_no_events">Ei tapahtumia tälle päivälle</string>
+    <plurals name="event_summary_num_events">
+        <item quantity="one">%1$d tapahtuma</item>
+        <item quantity="other">%1$d tapahtumaa</item>
+    </plurals>
+    <string name="time_of_day_morning">aamulla</string>
+    <string name="time_of_day_forenoon">aamupäivällä</string>
+    <string name="time_of_day_noon">päivällä</string>
+    <string name="time_of_day_afternoon">iltapäivällä</string>
+    <string name="time_of_day_evening">illalla</string>
+    <string name="time_of_day_late_evening">myöhään illalla</string>
+    <string name="time_of_day_night">yöllä</string>
+    <plurals name="hours_until">
+        <item quantity="one">%1$d tunti</item>
+        <item quantity="other">%1$d tuntia</item>
+    </plurals>
+    <plurals name="minutes_until">
+        <item quantity="one">%1$d minuutti</item>
+        <item quantity="other">%1$d minuuttia</item>
+    </plurals>
+    <string-array name="week_days">
+        <item>Sunnuntai</item>
+        <item>Maanantai</item>
+        <item>Tiistai</item>
+        <item>Keskiviikko</item>
+        <item>Torstai</item>
+        <item>Perjantai</item>
+        <item>Lauantai</item>
+    </string-array>
+</resources>
