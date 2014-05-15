@@ -137,7 +137,7 @@ public class TodayWidgetView {
 		else if (milliseconds >= TodayWidget.HOUR_IN_MILLIS) { // tunteja
 			int hours = (int) TimeUnit.MILLISECONDS.toHours(milliseconds);
 			if (hours > 3) {
-				result = resources.getString(R.string.event_summary_to_next_event_text_coarse, determineTimeOfDay(resources, next.getTime()));
+				result = resources.getString(R.string.event_summary_to_next_event_text_coarse, getTimeOfDayAsString(resources, next.getTime()));
 			}
 			else {
 				result = resources.getString(R.string.event_summary_to_next_event_text_fine, resources.getQuantityString(R.plurals.hours_until, hours, hours));
@@ -146,31 +146,102 @@ public class TodayWidgetView {
 		return result;
 	}
 	
-	private String determineTimeOfDay(Resources resources, long milliseconds) {
+	private String getTimeOfDayAsString(Resources resources, long milliseconds) {
 		String result = "";
 		Calendar next = Calendar.getInstance();
 		next.setTimeInMillis(milliseconds);
 		int hourOfDay = next.get(Calendar.HOUR_OF_DAY);
-		if (hourOfDay >= 0 && hourOfDay < 6) {
+		switch (getTimeOfDay(hourOfDay)) {
+		case NIGHT:
 			result = resources.getString(R.string.time_of_day_night);
-		}
-		else if (hourOfDay >= 6 && hourOfDay < 9) {
+			break;
+		case MORNING:
 			result = resources.getString(R.string.time_of_day_morning);
-		}
-		else if (hourOfDay >= 9 && hourOfDay < 12) {
+			break;
+		case FORENOON:
 			result = resources.getString(R.string.time_of_day_forenoon);
-		}
-		else if (hourOfDay >= 12 && hourOfDay < 15) {
+			break;
+		case NOON:
 			result = resources.getString(R.string.time_of_day_noon);
-		}
-		else if (hourOfDay >= 15 && hourOfDay < 18) {
+			break;
+		case AFTERNOON:
 			result = resources.getString(R.string.time_of_day_afternoon);
-		}
-		else if (hourOfDay >= 18 && hourOfDay < 21) {
+			break;
+		case EVENING:
 			result = resources.getString(R.string.time_of_day_evening);
-		}
-		else if (hourOfDay >= 21){
+			break;
+		case LATE_EVENING:
 			result = resources.getString(R.string.time_of_day_late_evening);
+			break;
+		}
+		return result;
+	}
+	
+	private String buildGreetingText(Resources resources, Calendar currentTime, Calendar timeOfNextMeeting) {
+		StringBuilder result = new StringBuilder();
+		String greetingText = "";
+		String meetingText = "";
+		TimeOfDay timeOfDay = getTimeOfDay(currentTime.get(Calendar.HOUR_OF_DAY)); 
+		switch (timeOfDay) {
+		case NIGHT:
+			greetingText = resources.getString(R.string.greeting_text_greeting_night);
+			break;
+		case MORNING:
+			greetingText = resources.getString(R.string.greeting_text_greeting_morning);
+			break;
+		case FORENOON:
+			greetingText = resources.getString(R.string.greeting_text_greeting_forenoon);
+			break;
+		case NOON:
+			greetingText = resources.getString(R.string.greeting_text_greeting_noon);
+			break;
+		case AFTERNOON:
+			greetingText = resources.getString(R.string.greeting_text_greeting_afternoon);
+			break;
+		case EVENING:
+			greetingText = resources.getString(R.string.greeting_text_greeting_evening);
+			break;
+		case LATE_EVENING:
+			greetingText = resources.getString(R.string.greeting_text_greeting_lateevening);
+			break;
+		}
+		if (timeOfNextMeeting == null) {
+			if (timeOfDay == TimeOfDay.MORNING)
+				meetingText = resources.getString(R.string.greetingTextNoMeetings);
+			else
+				meetingText = resources.getString(R.string.greetingTextNoMoreMeetings);
+		}
+		else {
+			if (timeOfDay == TimeOfDay.MORNING)
+				meetingText = resources.getString(R.string.greetingTextNoMeetings);
+			else
+				meetingText = resources.getString(R.string.greetingTextNoMoreMeetings);
+		}
+		return result.toString();
+	}
+	
+	private TimeOfDay getTimeOfDay(int hourOfDay) {
+		TimeOfDay result = null;
+		if (hourOfDay >= 0 && hourOfDay < 6) {
+			result = TimeOfDay.NIGHT;
+		}
+		if (hourOfDay >= 6 && hourOfDay < 9) {
+			result = TimeOfDay.MORNING;
+		}
+		if (hourOfDay >= 9 && hourOfDay < 12) {
+			result = TimeOfDay.FORENOON;
+		}
+		if (hourOfDay >= 12 && hourOfDay < 15) {
+			result = TimeOfDay.NOON;
+		}
+		if (hourOfDay >= 15 && hourOfDay < 18) {
+			result = TimeOfDay.AFTERNOON;
+		}
+		if (hourOfDay >= 18 && hourOfDay < 21) {
+			result = TimeOfDay.EVENING;
+		}
+		if (hourOfDay >= 21){
+			result = TimeOfDay.LATE_EVENING;
 		}
 		return result;
 	}

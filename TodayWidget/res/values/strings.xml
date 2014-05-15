@@ -39,4 +39,15 @@
         <item>Perjantai</item>
         <item>Lauantai</item>
     </string-array>
+    <string name="greeting_text_greeting_morning">Huomenta!</string>
+    <string name="greeting_text_greeting_forenoon"></string>
+    <string name="greeting_text_greeting_noon"></string>
+    <string name="greeting_text_greeting_afternoon"></string>
+    <string name="greeting_text_greeting_evening"></string>
+    <string name="greeting_text_greeting_lateevening"></string>
+    <string name="greeting_text_greeting_night">Hyvää yötä!</string>
+    <string name="greeting_text_meetings">Sinulla on %1$s %2$d tapahtumaa. Seuraava on %3$s.</string>
+    <string name="greetingTextNoMeetings">Sinulla ei ole tapahtumia tälle päivälle.</string>
+    <string name="greetingTextNoMoreMeetings">Sinulla ei ole tapahtumia enää tälle päivälle.</string>
+    <string name="greeting_text_full">%1$s%2$s</string>
 </resources>
