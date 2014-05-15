@@ -137,7 +137,7 @@ public class TodayWidgetView {
 		else if (milliseconds >= TodayWidget.HOUR_IN_MILLIS) { // tunteja
 			int hours = (int) TimeUnit.MILLISECONDS.toHours(milliseconds);
 			if (hours > 3) {
-				result = resources.getString(R.string.event_summary_to_next_event_text_coarse, getTimeOfDayAsString(resources, next.getTime()));
+				result = resources.getString(R.string.event_summary_to_next_event_text_coarse, getTimeOfDayAsString(resources, next.getHours()));
 			}
 			else {
 				result = resources.getString(R.string.event_summary_to_next_event_text_fine, resources.getQuantityString(R.plurals.hours_until, hours, hours));
@@ -146,11 +146,8 @@ public class TodayWidgetView {
 		return result;
 	}
 	
-	private String getTimeOfDayAsString(Resources resources, long milliseconds) {
+	private String getTimeOfDayAsString(Resources resources, int hourOfDay) {
 		String result = "";
-		Calendar next = Calendar.getInstance();
-		next.setTimeInMillis(milliseconds);
-		int hourOfDay = next.get(Calendar.HOUR_OF_DAY);
 		switch (getTimeOfDay(hourOfDay)) {
 		case NIGHT:
 			result = resources.getString(R.string.time_of_day_night);
@@ -177,7 +174,7 @@ public class TodayWidgetView {
 		return result;
 	}
 	
-	private String buildGreetingText(Resources resources, Calendar currentTime, Calendar timeOfNextMeeting) {
+	private String buildGreetingText(Resources resources, Calendar currentTime, Calendar timeOfNextMeeting, int numOfUpcomingMeetings) {
 		StringBuilder result = new StringBuilder();
 		String greetingText = "";
 		String meetingText = "";
@@ -213,11 +210,11 @@ public class TodayWidgetView {
 		}
 		else {
 			if (timeOfDay == TimeOfDay.MORNING)
-				meetingText = resources.getString(R.string.greetingTextNoMeetings);
+				meetingText = resources.getString(R.string.greeting_text_meetings, resources.getString(R.string.today), numOfUpcomingMeetings, getTimeOfDayAsString(resources, timeOfNextMeeting.get(Calendar.HOUR_OF_DAY)));
 			else
-				meetingText = resources.getString(R.string.greetingTextNoMoreMeetings);
+				meetingText = resources.getString(R.string.greeting_text_meetings, getTimeOfDayAsString(resources, currentTime.get(Calendar.HOUR_OF_DAY)), numOfUpcomingMeetings, getTimeOfDayAsString(resources, timeOfNextMeeting.get(Calendar.HOUR_OF_DAY)));
 		}
-		return result.toString();
+		return resources.getString(R.string.greeting_text_full, greetingText, meetingText);
 	}
 	
 	private TimeOfDay getTimeOfDay(int hourOfDay) {
