@@ -18,24 +18,6 @@ public class TodayWidgetView {
 
 	public static int CURRENT_HEIGHT = 0;
 	
-	private static int[] eventRowIds = { R.id.eventRow1, 
-		R.id.eventRow2, 
-		R.id.eventRow3,
-		R.id.eventRow4,
-		R.id.eventRow5 };
-	
-	private static int[] eventTimeIds = { R.id.eventTime1, 
-		R.id.eventTime2, 
-		R.id.eventTime3,
-		R.id.eventTime4,
-		R.id.eventTime5 };
-	
-	private static int[] eventTitleIds = { R.id.eventTitle1, 
-		R.id.eventTitle2, 
-		R.id.eventTitle3,
-		R.id.eventTitle4,
-		R.id.eventTitle5 };
-	
 	private CalendarContentResolver calendarContent;
 	
 	public TodayWidgetView() {
@@ -57,72 +39,19 @@ public class TodayWidgetView {
 		otherEvents = calendarContent.getEventsForToday(1);
 		otherEvents.putAll(calendarContent.getEventsForToday(4));
 
-		if (!nameDayEvents.isEmpty() || !holidayEvents.isEmpty()) {
-			view.setViewVisibility(R.id.allDayEventContainer, View.VISIBLE);	
-			if (!nameDayEvents.isEmpty()) {
-				view.setViewVisibility(R.id.textView2, View.VISIBLE);
-				view.setTextViewText(R.id.textView2, nameDayEvents.get(nameDayEvents.firstKey()).getTitle());
+
+		Calendar timeOfNextMeeting = Calendar.getInstance();
+		for (Date key : otherEvents.keySet()) {
+			timeOfNextMeeting.setTime(otherEvents.get(key).getStartDate());
+			if ((timeOfNextMeeting.getTimeInMillis() - now.getTimeInMillis()) > TodayWidget.MINUTE_IN_MILLIS) {
+				break;
 			}
-			else {
-				view.setViewVisibility(R.id.textView2, View.GONE);
-			}
-			if (!holidayEvents.isEmpty()) {
-				view.setViewVisibility(R.id.textView2, View.VISIBLE);
-				view.setTextViewText(R.id.textView3, holidayEvents.get(holidayEvents.firstKey()).getTitle());
-			}
-			else {
-				view.setViewVisibility(R.id.textView3, View.GONE);
-			}
-		}
-		else {
-			view.setViewVisibility(R.id.allDayEventContainer, View.GONE);
 		}
 		
-		if (!otherEvents.isEmpty()) {
-			view.setViewVisibility(R.id.eventSummary, View.VISIBLE);
-			Date next = null;
-			for (Date key : otherEvents.keySet()) {
-				next = otherEvents.get(key).getStartDate();
-				if ((next.getTime() - now.getTimeInMillis()) > TodayWidget.MINUTE_IN_MILLIS) {
-					break;
-				}
-			}
-			if (CURRENT_HEIGHT < 180) {
-				view.setViewVisibility(R.id.eventSummaryTextView, View.VISIBLE);
-				for (int i = 0; i < eventRowIds.length; i++) {
-					view.setViewVisibility(eventRowIds[i], View.GONE);
-				}
-				String numOfEvents = context.getResources().getQuantityString(R.plurals.event_summary_num_events, otherEvents.size(), otherEvents.size());
-				String timetoNextEvent = determineTimeToNextEventString(context.getResources(), now.getTime(), next);
-				if (timetoNextEvent.isEmpty()) {
-					view.setTextViewText(R.id.eventSummaryTextView, numOfEvents);
-				} else {
-					view.setTextViewText(R.id.eventSummaryTextView, context.getResources().getString(R.string.event_summary_text, numOfEvents, timetoNextEvent));
-				}
-			}
-			else {
-				view.setViewVisibility(R.id.eventSummaryTextView, View.GONE);
-				int counter = 0;
-				for (Date key : otherEvents.keySet()) {
-					CalendarEventEntry event =  otherEvents.get(key);
-					view.setViewVisibility(eventRowIds[counter], View.VISIBLE);
-					view.setTextViewText(eventTimeIds[counter], event.isAllDayEvent() ? "" : 
-						DateFormat.getTimeFormat(context).format(event.getStartDate()) + " - " + 
-						DateFormat.getTimeFormat(context).format(event.getEndDate()));
-					view.setTextViewText(eventTitleIds[counter++], event.getTitle());
-					if (counter + 1 == eventRowIds.length) {
-						break;
-					}
-				} 
-			}
-		}
-		else {
-			view.setViewVisibility(R.id.eventSummary, View.GONE);
-			view.setViewVisibility(R.id.eventSummaryTextView, View.GONE);
-			for (int i = 0; i < eventRowIds.length; i++) {
-				view.setViewVisibility(eventRowIds[i], View.GONE);
-			}
-		}
+		int numOfUpcomingMeetings = otherEvents.tailMap(timeOfNextMeeting.getTime()).size();
+			
+		view.setTextViewText(R.id.textView5, buildGreetingText(context.getResources(), now, timeOfNextMeeting, numOfUpcomingMeetings));
+			
 		AppWidgetManager manager = AppWidgetManager.getInstance(context);  
         manager.updateAppWidget(widget, view);
 	}

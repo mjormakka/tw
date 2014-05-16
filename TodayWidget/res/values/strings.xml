@@ -16,6 +16,7 @@
         <item quantity="other">%1$d tapahtumaa</item>
     </plurals>
     <string name="today">tänään</string>
+    <string name="tomorrow">huomenna</string>
     <string name="time_of_day_morning">aamulla</string>
     <string name="time_of_day_forenoon">aamupäivällä</string>
     <string name="time_of_day_noon">päivällä</string>
@@ -51,4 +52,5 @@
     <string name="greetingTextNoMeetings">Sinulla ei ole tapahtumia tälle päivälle.</string>
     <string name="greetingTextNoMoreMeetings">Sinulla ei ole tapahtumia enää tälle päivälle.</string>
     <string name="greeting_text_full">%1$s%2$s</string>
+    <string name="greetingTextNoMeetingsTomorrow">Sinulla ei ole tapahtumia huomiselle.</string>
 </resources>

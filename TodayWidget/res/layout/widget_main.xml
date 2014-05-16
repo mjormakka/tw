@@ -20,192 +20,21 @@
         android:padding="3dp" >
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="@string/day_of_week"
-            android:textColor="#FFFFFF"
-            android:textSize="44sp" />
-
-        <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="@string/date"
             android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/allDayEventContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:background="#66000000"
-        android:orientation="vertical"
-        android:padding="3dp" >
-
+        
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/name_day_calendar_text"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="@string/holiday_calendar_text"
-            android:textColor="#FFFFFF" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/eventSummary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:background="#66000000"
-        android:orientation="vertical"
-        android:padding="3dp" >
-
-        <TextView
-            android:id="@+id/eventSummaryTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/event_summary_no_events"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:id="@+id/eventRow1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/eventTime1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-            <TextView
-                android:id="@+id/eventTitle1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-        </LinearLayout>
-        
-        <LinearLayout
-            android:id="@+id/eventRow2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-            
-            <TextView
-                android:id="@+id/eventTime2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-            <TextView
-                android:id="@+id/eventTitle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-
-        </LinearLayout>
-        
-        <LinearLayout
-            android:id="@+id/eventRow3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/eventTime3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-            <TextView
-                android:id="@+id/eventTitle3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-        </LinearLayout>
-        
-        <LinearLayout
-            android:id="@+id/eventRow4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/eventTime4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-            <TextView
-                android:id="@+id/eventTitle4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-        </LinearLayout>
-        
-        <LinearLayout
-            android:id="@+id/eventRow5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/eventTime5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-            <TextView
-                android:id="@+id/eventTitle5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
-            
-        </LinearLayout>
+            android:text="@string/day_of_week"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
 
     </LinearLayout>
     
